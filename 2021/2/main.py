@@ -1,22 +1,50 @@
 # Init
 # %%
 import numpy as np
-from aocd.models import Puzzle
 
-# %%
-puzzle = Puzzle(year=2021, day=2)
+with open("input.txt","r") as f:
+    move_list =f.read().splitlines()
 
 # A
 # %%
-d = [int(s) for s in puzzle.input_data.splitlines()]
+h, d = 0, 0
 
+for move in move_list:
+    dir = move.split()[0]
+    length = int(move.split()[1])
+
+    if dir == "forward":
+        h += length
+    if dir == "down":
+        d += length
+    if dir == "up":
+        d -= length
+
+answer = h*d    
 
 # %%
-puzzle.answer_a = answer_a
+submit(answer)
 
 
 # B
 # %%
+h, d, a = 0, 0, 0
+
+for move in move_list:
+    dir = move.split()[0]
+    length = int(move.split()[1])
+
+    if dir == "forward":
+        h += length
+        d += a*length
+    if dir == "down":
+        a += length
+    if dir == "up":
+        a -= length
+
+answer = h*d    
+
+answer
 
 # %%
-puzzle.answer_b = answer_b
+submit(answer)
